@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+
+    web:
+        image: richarvey/nginx-php-fpm
+
+        ports:
+            - 8080:80
+
+        volumes:
+            - /home/vagrant/bgapp/web:/var/www/html
+
+        networks:
+            - app-network
+
+    db:
+
+        image: cchristoff/bgapp-db
+
+        networks:
+            - app-network
+
+        environment:
+            MYSQL_ROOT_PASSWORD: "12345"
+
+networks:
+
+    app-network:
